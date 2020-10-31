@@ -1,0 +1,9 @@
+<div>
+	<ol *ngIf="products">		
+		<li *ngFor="let product of products">
+			{{ product.name }}
+			<br />
+			<img src="{{ product.image }}" alt="{{ product.name }}">
+		</li>
+	</ol>
+</div>
