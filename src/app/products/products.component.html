@@ -1,9 +1,14 @@
 <div>
 	<ol *ngIf="products">		
 		<li *ngFor="let product of products">
+			Category: {{ product.categoryName }} 
+			<br />		
 			{{ product.name }}
 			<br />
 			<img src="{{ product.image }}" alt="{{ product.name }}">
+			<br />
+			<span>{{ !product.inStock ? "NOT AVAILABLE" : "Available"}}</span>
+			<hr />
 		</li>
 	</ol>
 </div>
