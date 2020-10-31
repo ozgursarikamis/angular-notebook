@@ -1,6 +1,6 @@
 <div>
-	<ol *ngIf="products">		
-		<li *ngFor="let product of products">
+	<ul style="list-style: none;" *ngIf="(productsAsync | async)">		
+		<li *ngFor="let product of productsAsync | async">
 			Category: {{ product.categoryName }} 
 			<br />		
 			{{ product.name }}
@@ -10,5 +10,5 @@
 			<span>{{ !product.inStock ? "NOT AVAILABLE" : "Available"}}</span>
 			<hr />
 		</li>
-	</ol>
+	</ul>
 </div>
