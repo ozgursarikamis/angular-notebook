@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable, combineLatest, of } from 'rxjs';
 
-import { concatMap, map, shareReplay, tap } from "rxjs/operators";
+import { concatMap, map, mergeMap, shareReplay, tap } from "rxjs/operators";
 import { ICategory, IProduct } from './products/models/product';
 
 const service = 'https://5f51071d5e98480016123523.mockapi.io'
@@ -13,8 +13,9 @@ const service = 'https://5f51071d5e98480016123523.mockapi.io'
 export class ProductsService {
 
 	constructor(private http: HttpClient) {
-		this.listProductWithConcatMap$.subscribe(console.log);
-	 }
+		// this.listProductWithConcatMap$.subscribe(console.log);
+		this.listProductWithMergeMap$.subscribe(console.log);
+	}
 
 	products$ = this.http.get<IProduct[]>(`${service}/products`).pipe(shareReplay(1));
 	categories$ = this.http.get<ICategory[]>(`${service}/categories`).pipe(shareReplay(1));
@@ -22,14 +23,19 @@ export class ProductsService {
 	productsWithCategories$ = combineLatest([this.products$, this.categories$])
 		.pipe();
 
-	listProductWithMap$ = of(1,2,3).pipe(
-			map(id => this.http.get<IProduct>(`${service}/products/${id}`))
-		);
+	listProductWithMap$ = of(1, 2, 3).pipe(
+		map(id => this.http.get<IProduct>(`${service}/products/${id}`))
+	);
 
-	listProductWithConcatMap$ = of(1,2,3).pipe(
-			tap(x => console.log(`concatMap value is : ${x}`)),
-			concatMap(id => this.http.get<IProduct>(`${service}/products/${id}`))
-		);
+	listProductWithConcatMap$ = of(1, 2, 3).pipe(
+		tap(x => console.log(`concatMap value is : ${x}`)),
+		concatMap(id => this.http.get<IProduct>(`${service}/products/${id}`))
+	);
+
+	listProductWithMergeMap$ = of(1, 2, 3).pipe(
+		tap(x => console.log(`mergeMap value is : ${x}`)),
+		mergeMap(id => this.http.get<IProduct>(`${service}/products/${id}`))
+	);
 
 	listProducts(): Observable<IProduct[]> {
 		return this.products$

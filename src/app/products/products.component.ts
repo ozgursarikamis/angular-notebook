@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
 	// returns Observable of Observables:
 	productsHigherOrderOperatorWithMap: Observable<Observable<IProduct>>;
 	productsHigherOrderOperatorWithConcatMap: Observable<IProduct>;
+	productsHigherOrderOperatorWithMergeMap: Observable<IProduct>;
 
 	ngOnInit(): void {
 		this.productsAsync = this.service.listProductsWithCategories(); 
@@ -28,9 +29,9 @@ export class ProductsComponent implements OnInit {
 	}
 
 	onHigherOrderMappingOperators() {
-		this.productsHigherOrderOperatorWithMap = this.service.listProductWithMap$;
-		this.productsHigherOrderOperatorWithConcatMap = this.service.listProductWithConcatMap$;
-		console.log('higher order mapping operator (map):>>', this.productsHigherOrderOperatorWithMap);
-		console.log('higher order mapping operator (concatMap):>>', this.productsHigherOrderOperatorWithConcatMap);
+		// this.productsHigherOrderOperatorWithMap = this.service.listProductWithMap$;
+		// this.productsHigherOrderOperatorWithConcatMap = this.service.listProductWithConcatMap$;
+		// console.log('higher order mapping operator (map):>>', this.productsHigherOrderOperatorWithMap);
+		// console.log('higher order mapping operator (concatMap):>>', this.productsHigherOrderOperatorWithConcatMap);
 	}
 }
