@@ -16,6 +16,10 @@ export class ProductsComponent implements OnInit {
 	productsAsync: Observable<IProduct[]>;
 
 	ngOnInit(): void {
+		this.productsAsync = this.service.listProductsWithCategories(); 
+	}
+
+	onClick() {
 		this.productsAsync = this.service.listProductsWithCategories();
 	}
 }

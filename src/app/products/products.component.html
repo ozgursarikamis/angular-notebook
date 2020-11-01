@@ -1,4 +1,7 @@
 <div>
+	<button (click) = "onClick()">Reload</button>
+</div>
+<div>
 	<ul style="list-style: none;" *ngIf="(productsAsync | async)">		
 		<li *ngFor="let product of productsAsync | async">
 			Category: {{ product.categoryName }} 
