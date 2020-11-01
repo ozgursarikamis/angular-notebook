@@ -14,6 +14,9 @@ export class ProductsComponent implements OnInit {
 
 	products: IProduct[];
 	productsAsync: Observable<IProduct[]>;
+	
+	// returns Observable of Observables:
+	productsHigherOrderOperator: Observable<Observable<IProduct[]>>; 
 
 	ngOnInit(): void {
 		this.productsAsync = this.service.listProductsWithCategories(); 
@@ -21,5 +24,10 @@ export class ProductsComponent implements OnInit {
 
 	onClick() {
 		this.productsAsync = this.service.listProductsWithCategories();
+	}
+
+	on123Click() {
+		this.productsHigherOrderOperator = this.service.listProductOf123();
+		console.log('higher order mapping operator :>>', this.productsHigherOrderOperator);
 	}
 }

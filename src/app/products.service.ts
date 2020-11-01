@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, of } from 'rxjs';
 
 import { map, shareReplay } from "rxjs/operators";
 import { ICategory, IProduct } from './products/models/product';
@@ -20,6 +20,11 @@ export class ProductsService {
 	productsWithCategories$ = combineLatest([this.products$, this.categories$])
 		.pipe();
 
+	listProductOf123() {
+		return of(1,2,3).pipe(
+			map(id => this.http.get<IProduct[]>(`${service}/products/${id}`))
+		);
+	}
 	listProducts(): Observable<IProduct[]> {
 		return this.products$
 			.pipe(
@@ -39,12 +44,12 @@ export class ProductsService {
 		return this.categories$;
 	}
 
-	listProductsWithCategories() {	
+	listProductsWithCategories() {
 		return this.productsWithCategories$.pipe(
 			map(([products, categories]) => {
 				let i = 1;
 				products.forEach(p => {
-					if(!p.categoryId) {
+					if (!p.categoryId) {
 						p.categoryId = i;
 						i++;
 					}
