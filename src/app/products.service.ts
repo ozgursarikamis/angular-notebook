@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable, combineLatest, of } from 'rxjs';
 
-import { concatMap, map, mergeMap, shareReplay, tap } from "rxjs/operators";
+import { concatMap, map, mergeMap, shareReplay, switchMap, tap } from "rxjs/operators";
 import { ICategory, IProduct } from './products/models/product';
 
 const service = 'https://5f51071d5e98480016123523.mockapi.io'
@@ -13,15 +13,28 @@ const service = 'https://5f51071d5e98480016123523.mockapi.io'
 export class ProductsService {
 
 	constructor(private http: HttpClient) {
+
+		/*
+			! waits for the value previously emitted, then merges:
+		*/
 		// this.listProductWithConcatMap$.subscribe(console.log);
-		this.listProductWithMergeMap$.subscribe(console.log);
+
+		/*
+		 	! runs in parallel, order doesn't matter:
+		*/
+		// this.listProductWithMergeMap$.subscribe(console.log);
+
+
+		/* 
+			! cancels previously emitted item, switches to the new one:
+		*/
+		// this.listProductWithSwitchMap$.subscribe(console.log);
 	}
 
 	products$ = this.http.get<IProduct[]>(`${service}/products`).pipe(shareReplay(1));
 	categories$ = this.http.get<ICategory[]>(`${service}/categories`).pipe(shareReplay(1));
 
-	productsWithCategories$ = combineLatest([this.products$, this.categories$])
-		.pipe();
+	productsWithCategories$ = combineLatest([this.products$, this.categories$]);
 
 	listProductWithMap$ = of(1, 2, 3).pipe(
 		map(id => this.http.get<IProduct>(`${service}/products/${id}`))
@@ -35,6 +48,11 @@ export class ProductsService {
 	listProductWithMergeMap$ = of(1, 2, 3).pipe(
 		tap(x => console.log(`mergeMap value is : ${x}`)),
 		mergeMap(id => this.http.get<IProduct>(`${service}/products/${id}`))
+	);
+
+	listProductWithSwitchMap$ = of(1, 2, 3).pipe(
+		tap(x => console.log(`mergeMap value is : ${x}`)),
+		switchMap(id => this.http.get<IProduct>(`${service}/products/${id}`))
 	);
 
 	listProducts(): Observable<IProduct[]> {
