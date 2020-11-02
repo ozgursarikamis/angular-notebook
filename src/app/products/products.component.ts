@@ -1,6 +1,6 @@
 import { interval, Observable } from 'rxjs';
 import { ProductsService } from './product.service';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IProduct } from './model/product';
 import { debounce, filter, map } from "rxjs/operators";
 
@@ -9,9 +9,13 @@ import { debounce, filter, map } from "rxjs/operators";
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, AfterViewInit {
 
   constructor(private service: ProductsService) { }
+	
+  ngAfterViewInit(): void {
+	  console.log('this.filterElementRef :>> ', this.filterElementRef);
+  }
 
   products$: Observable<IProduct[]>;
   filteredPproducts$: Observable<IProduct[]>;
@@ -27,6 +31,8 @@ export class ProductsComponent implements OnInit {
 	  this._listFilter = v;
 	  this.performFilter();
   }
+
+  @ViewChild('filterElement') filterElementRef: ElementRef;
 
   ngOnInit(): void {
 	  this.products$ = this.service.products$;
