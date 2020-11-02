@@ -8,13 +8,6 @@
 		placeholder="Filter by color">
 
 		{{ filterList }}
-		
-		<br>
-		<br>
-
-		<input type="text" placeholder="Filter by name" 
-		[(ngModel)]="nameFilter"
-		#nameElement />
 </div>
 <ul *ngIf="products$ | async">
 	<li *ngFor="let product of products$ | async">

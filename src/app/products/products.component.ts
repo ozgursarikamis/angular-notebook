@@ -1,9 +1,8 @@
 import { interval, Observable } from 'rxjs';
 import { ProductsService } from './product.service';
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IProduct } from './model/product';
-import { debounce, map } from "rxjs/operators";
-import { NgModel } from '@angular/forms';
+import { debounce, filter, map } from "rxjs/operators";
 
 @Component({
   selector: 'app-products',
@@ -24,15 +23,11 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 		* we may not be able to use SSR or Web Workers
 		* can pose a security threat, especially accessing the innerHTML (XSS Attacks)
 	*/
-
-	console.log('this.inputElementRefs :>> ', this.inputElementRefs);
-	this.inputElementRefs.changes.subscribe(console.log)
   }
 
   products$: Observable<IProduct[]>;
   filteredPproducts$: Observable<IProduct[]>;
   filterByColor: string;
-  nameFilter: string;
 
   private _listFilter: string;
   
@@ -46,7 +41,6 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   @ViewChild('filterElement') filterElementRef: ElementRef;
-  @ViewChildren(NgModel) inputElementRefs: QueryList<ElementRef>;
 
   ngOnInit(): void {
 	  this.products$ = this.service.products$;
