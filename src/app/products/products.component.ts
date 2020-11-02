@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
 			this.products$ = this.service.products$.pipe(
 				debounce(() => interval(2000)),
 				map(products => {
-					return products.filter(x => x.color === this.filterByColor)
+					return products.filter(x => this.filterByColor.indexOf(x.color) !== -1)
 				})
 			);
 		} else {
