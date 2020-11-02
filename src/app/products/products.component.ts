@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs';
+import { interval, Observable } from 'rxjs';
 import { ProductsService } from './product.service';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './model/product';
+import { debounce, filter, map } from "rxjs/operators";
 
 @Component({
   selector: 'app-products',
@@ -26,7 +27,14 @@ export class ProductsComponent implements OnInit {
   }
 	performFilter() {
 		if (this.filterByColor) {
-			// this.filteredProducts =
+			this.products$ = this.service.products$.pipe(
+				debounce(() => interval(2000)),
+				map(products => {
+					return products.filter(x => x.color === this.filterByColor)
+				})
+			);
+		} else {
+			this.products$ = this.service.products$;
 		}
 	}
 }
