@@ -1,3 +1,4 @@
+import { ProductDetailsComponent } from './../product-details/product-details.component';
 import { interval, Observable } from 'rxjs';
 import { ProductsService } from './product.service';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
@@ -26,14 +27,19 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 	*/
 	
 	this.filterInput.valueChanges.subscribe(x => this.performFilter(x));
+
+	// access child components methods and properties:
+	console.log('this.childComponent.hitCount :>> ', this.childComponent.hitCount);
+	console.log('this.childComponent.increaseHitCount() :>> ', this.childComponent.increaseHitCount());
+
   }
 
   products$: Observable<IProduct[]>;
   filteredPproducts$: Observable<IProduct[]>;
   filterByColor: string;
   ngModelFiltering: string;
-
-  private _listFilter: string;
+  
+  @ViewChild(ProductDetailsComponent) childComponent: ProductDetailsComponent;
 
   @ViewChild('filterElement') filterElementRef: ElementRef;
   

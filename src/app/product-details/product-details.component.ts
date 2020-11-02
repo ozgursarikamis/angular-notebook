@@ -21,6 +21,10 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
 		console.log('changes :>> ', changes);
 	}
 
+	increaseHitCount(): number {
+		return this.hitCount + 1;
+	}
+
 	ngOnInit(): void {
 	}
 
