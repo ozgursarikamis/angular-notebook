@@ -3,11 +3,11 @@
 	Filter by :
 	<input
 		#filterElement
-		[(ngModel)]="filterList"
+		[(ngModel)]="ngModelFiltering"
 		type="text" 
 		placeholder="Filter by color">
 
-		{{ filterList }}
+		{{ ngModelFiltering }}
 </div>
 <ul *ngIf="products$ | async">
 	<li *ngFor="let product of products$ | async">

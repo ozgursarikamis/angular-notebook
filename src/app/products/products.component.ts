@@ -3,6 +3,7 @@ import { ProductsService } from './product.service';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IProduct } from './model/product';
 import { debounce, filter, map } from "rxjs/operators";
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -23,24 +24,22 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 		* we may not be able to use SSR or Web Workers
 		* can pose a security threat, especially accessing the innerHTML (XSS Attacks)
 	*/
+	
+	this.filterInput.valueChanges.subscribe(x => this.performFilter(x));
   }
 
   products$: Observable<IProduct[]>;
   filteredPproducts$: Observable<IProduct[]>;
   filterByColor: string;
+  ngModelFiltering: string;
 
   private _listFilter: string;
-  
-  public get filterList() : string {
-	  return this._listFilter;
-  }
-  
-  public set filterList(v : string) {
-	  this._listFilter = v;
-	  this.performFilter();
-  }
 
   @ViewChild('filterElement') filterElementRef: ElementRef;
+  
+  // NgModel is to access state information, 
+  // observable data flow ... etc... 
+  @ViewChild(NgModel) filterInput: NgModel;
 
   ngOnInit(): void {
 	  this.products$ = this.service.products$;
@@ -48,14 +47,15 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   onFilterChange($event: any) {
 	  this.filterByColor = $event;
-	  this.performFilter();
+	  this.performFilter(this.ngModelFiltering);
   }
-	performFilter() {
-		if (this._listFilter) {
+
+  performFilter(filterTerm: string) {
+		if (filterTerm) {
 			this.products$ = this.service.products$.pipe(
 				debounce(() => interval(2000)),
 				map(products => {
-					return products.filter(x => this._listFilter.indexOf(x.color) !== -1)
+					return products.filter(x => filterTerm.indexOf(x.color) !== -1)
 				})
 			);
 		} else {
