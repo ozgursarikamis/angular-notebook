@@ -7,7 +7,7 @@
 		type="text" 
 		placeholder="Filter by color">
 
-		{{ filterByColor }}
+		{{ filterList }}
 </div>
 <ul *ngIf="products$ | async">
 	<li *ngFor="let product of products$ | async">

@@ -14,7 +14,15 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   constructor(private service: ProductsService) { }
 	
   ngAfterViewInit(): void {
-	  console.log('this.filterElementRef :>> ', this.filterElementRef);
+	//   console.log('this.filterElementRef :>> ', this.filterElementRef);
+	this.filterElementRef.nativeElement.focus();
+	/*
+		! CONSIDERATIONS: 
+		* using nativeElement, enables DIRECT access the DOM
+		* which means we tightly coupled to the browser
+		* we may not be able to use SSR or Web Workers
+		* can pose a security threat, especially accessing the innerHTML (XSS Attacks)
+	*/
   }
 
   products$: Observable<IProduct[]>;
