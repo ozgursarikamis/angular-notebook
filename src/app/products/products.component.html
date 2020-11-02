@@ -1,0 +1,16 @@
+<h2>Products</h2>
+<div>
+	Filter by :
+	<input
+		[ngModel]="filterByColor"	
+		(ngModelChange)="onFilterChange($event)"
+		type="text" 
+		placeholder="Filter by color">
+
+		{{ filterByColor }}
+</div>
+<ul *ngIf="products$ | async">
+	<li *ngFor="let product of products$ | async">
+		{{ product.name }} - <b>{{ product.color }}</b>
+	</li>
+</ul>
