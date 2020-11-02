@@ -17,6 +17,17 @@ export class ProductsComponent implements OnInit {
   filteredPproducts$: Observable<IProduct[]>;
   filterByColor: string;
 
+  private _listFilter: string;
+  
+  public get filterList() : string {
+	  return this._listFilter;
+  }
+  
+  public set filterList(v : string) {
+	  this._listFilter = v;
+	  this.performFilter();
+  }
+
   ngOnInit(): void {
 	  this.products$ = this.service.products$;
   }
@@ -26,11 +37,11 @@ export class ProductsComponent implements OnInit {
 	  this.performFilter();
   }
 	performFilter() {
-		if (this.filterByColor) {
+		if (this._listFilter) {
 			this.products$ = this.service.products$.pipe(
 				debounce(() => interval(2000)),
 				map(products => {
-					return products.filter(x => this.filterByColor.indexOf(x.color) !== -1)
+					return products.filter(x => this._listFilter.indexOf(x.color) !== -1)
 				})
 			);
 		} else {
