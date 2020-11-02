@@ -1,7 +1,7 @@
 import { ProductDetailsComponent } from './../product-details/product-details.component';
 import { interval, Observable } from 'rxjs';
 import { ProductsService } from './product.service';
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { IProduct } from './model/product';
 import { debounce, filter, map } from "rxjs/operators";
 import { NgModel } from '@angular/forms';
@@ -11,9 +11,13 @@ import { NgModel } from '@angular/forms';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, AfterViewInit {
+export class ProductsComponent implements OnInit, AfterViewInit, OnChanges {
 
   constructor(private service: ProductsService) { }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+	console.log('Parent component changes :>> ', changes);
+  }
 	
   ngAfterViewInit(): void {
 	//   console.log('this.filterElementRef :>> ', this.filterElementRef);
@@ -49,6 +53,10 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 	  this.products$ = this.service.products$;
+  }
+
+  messageReceived($event: string) {
+	  alert($event);
   }
 
   onFilterChange($event: any) {

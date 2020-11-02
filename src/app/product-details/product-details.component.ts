@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'app-product-details',
@@ -11,7 +11,14 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
 	@Input() hitCount: number;
 	hitMessage: string;
 
+	@Output() messageToParent = new EventEmitter<string>();
+
 	constructor() { }
+
+	sendMessageToParent() {
+		this.messageToParent.emit("Hello parent!");
+	}
+
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes["hitCount"] && !changes["hitCount"].currentValue) {
 			this.hitMessage = "No matches found";
