@@ -75,12 +75,14 @@
                   [title]="productForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
                   [disabled]="!productForm.valid"
                   (click)="saveProduct()">
-            Save
+            Save 
           </button>
           <button class="btn btn-outline-secondary mr-3"
                   style="width:80px"
                   type="button"
-                  title="Cancel your edits">
+				  title="Cancel your edits"
+				  (click)="cancel()"
+				  >
             Cancel
           </button>
           <button class="btn btn-outline-warning"

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { MessageService } from '../../messages/message.service';
 
@@ -18,7 +18,9 @@ export class ProductEditComponent implements OnInit {
 
   constructor(private productService: ProductService,
 			  private messageService: MessageService,
-			  private route: ActivatedRoute) { }
+			  private route: ActivatedRoute,
+			  private router: Router
+			  ) { }
 			  
 	ngOnInit(): void {
 		this.route.paramMap.subscribe(params => {
@@ -85,6 +87,11 @@ export class ProductEditComponent implements OnInit {
       this.messageService.addMessage(message);
     }
 
-    // Navigate back to the product list
+	// Navigate back to the product list
+	this.router.navigate(['/products']);
+  }
+
+  cancel() {
+	this.router.navigate(['/products']);
   }
 }
