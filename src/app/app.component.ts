@@ -1,17 +1,30 @@
-import { Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { AuthService } from './user/auth.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'pm-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-routing';
-}
+  pageTitle = 'Acme Product Management';
 
-/*
-A callback method that is invoked immediately 
-after the default change detector has checked the directive's data-bound properties for the first time, 
-and before any of the view or content children have been checked.
-It is invoked only once when the directive is instantiated.
-*/
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn;
+  }
+
+  get userName(): string {
+    if (this.authService.currentUser) {
+	return this.authService.currentUser.userName;
+    }
+    return '';
+  }
+
+  constructor(private authService: AuthService) { }
+
+  logOut(): void {
+    this.authService.logout();
+    console.log('Log out');
+  }
+}
