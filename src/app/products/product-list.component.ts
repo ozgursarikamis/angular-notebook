@@ -33,6 +33,9 @@ export class ProductListComponent implements OnInit {
 	  ) { }
 
   ngOnInit(): void {
+
+	document.title = this.route.snapshot.data["pageTitle"];
+
 	this.listFilter = this.route.snapshot.queryParamMap.get('filterby') || '';
 	this.showImage = this.route.snapshot.queryParamMap.get('showImage') === 'true';
 
