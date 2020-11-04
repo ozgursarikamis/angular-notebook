@@ -6,13 +6,14 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { ProductResolver } from './product-resolver.service';
 
 @NgModule({
   imports: [
 	SharedModule,
 	RouterModule.forChild([
 		{ path: 'products', component: ProductListComponent, data: { pageTitle: "Products List" } },
-		{ path: 'products/:id', component: ProductDetailComponent },
+		{ path: 'products/:id', component: ProductDetailComponent, resolve: { product: ProductResolver } },
 		{ path: 'products/:id/edit', component: ProductEditComponent }
 
 	])
