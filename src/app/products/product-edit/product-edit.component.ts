@@ -28,9 +28,11 @@ export class ProductEditComponent implements OnInit {
 		// 	this.getProduct(id);
 		// });
 
-		const resolvedData: ProductResolved = this.route.snapshot.data['resolvedData'];
-		this.errorMessage = resolvedData?.error;
-		this.onProductRetrieved(resolvedData?.product);
+		this.route.data.subscribe(data => {
+			const resolvedData: ProductResolved = this.route.snapshot.data['resolvedData'];
+			this.errorMessage = resolvedData?.error;
+			this.onProductRetrieved(resolvedData?.product);
+		});
 	}
 
   getProduct(id: number): void {
