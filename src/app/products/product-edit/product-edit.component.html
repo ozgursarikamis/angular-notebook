@@ -5,8 +5,14 @@
 
   <div class="card-body" *ngIf="product">
 	 <div class="wizard">
-		 <a [routerLink]="['info']" routerLinkActive="active">Basic Information</a>	
-		 <a [routerLink]="['tags']" routerLinkActive="active">Search Tags</a>	
+		 <a [routerLink]="['info']" routerLinkActive="active">
+			 <span [ngClass]="{'fa fa-exclamation' : !isValid('info')}"></span>
+			 Basic Information
+		 </a>	
+		 <a [routerLink]="['tags']" routerLinkActive="active">
+			 <span [ngClass]="{'fa fa-exclamation' : !isValid('tags')}"></span>
+			 Search Tags
+		 </a>
 	 </div> 
 	 <router-outlet></router-outlet>
 
