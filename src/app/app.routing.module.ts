@@ -8,7 +8,7 @@ import { AuthGuard } from './user/auth.guard';
 	imports: [
 		RouterModule.forRoot([
 			{ path: 'welcome', component: WelcomeComponent, data: [{ pageTitle: "Welcome to APM" }] },
-			{ path: 'products', canActivate: [AuthGuard], loadChildren: () => import('./products/product.module').then(m => m.ProductModule) },
+			{ path: 'products', canLoad: [AuthGuard], loadChildren: () => import('./products/product.module').then(m => m.ProductModule) },
 			{ path: '', redirectTo: 'welcome', pathMatch: 'full' },
 			{ path: '**', component: PageNotFoundComponent },
 		])
