@@ -13,8 +13,8 @@ import { ProductResolver } from './product-resolver.service';
 	SharedModule,
 	RouterModule.forChild([
 		{ path: 'products', component: ProductListComponent, data: { pageTitle: "Products List" } },
-		{ path: 'products/:id', component: ProductDetailComponent, resolve: { product: ProductResolver } },
-		{ path: 'products/:id/edit', component: ProductEditComponent }
+		{ path: 'products/:id', component: ProductDetailComponent, resolve: { resolvedData: ProductResolver } },
+		{ path: 'products/:id/edit', component: ProductEditComponent, resolve: { resolvedData: ProductResolver }  }
 
 	])
   ],
