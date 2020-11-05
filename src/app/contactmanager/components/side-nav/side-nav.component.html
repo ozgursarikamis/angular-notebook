@@ -12,7 +12,7 @@
 	</mat-drawer>
 
 	<div class="app-sidenav-sidenav-content">
-		<app-toolbar></app-toolbar>
+		<app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
 		<router-outlet></router-outlet>
 		<button type="button" mat-button (click)="drawer.toggle()">
 			Toggle sidenav
