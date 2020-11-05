@@ -6,6 +6,7 @@ import { ButtonsComponent } from './buttons/buttons.component';
 import { MaterialModule } from '../shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexboxComponent } from './flexbox/flexbox.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
 	declarations: [ButtonsComponent, FlexboxComponent],
@@ -14,7 +15,8 @@ import { FlexboxComponent } from './flexbox/flexbox.component';
 		DemoRoutingModule,
 		MaterialModule,
 		ReactiveFormsModule,
-		FormsModule
+		FormsModule,
+		FlexLayoutModule
 	]
 })
 export class DemoModule { }
