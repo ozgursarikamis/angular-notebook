@@ -1,6 +1,6 @@
 <mat-drawer-container class="app-sidenav-container" autosize>
 	<mat-drawer #drawer class="app-sidenav-sidenav mat-elevation-z10" 
-		opened="true" mode="side">
+		[opened]="!screenIsSmall" [mode]="screenIsSmall ? 'over': 'side'">
 		<mat-toolbar color="primary">
 			Contacts
 		</mat-toolbar>
