@@ -9,7 +9,12 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ContactmanagerAppComponent } from './contactmanager-app.component';
 
 const routes: Routes = [
-	{ path: '', component: ContactmanagerAppComponent },
+	{
+		path: '', component: ContactmanagerAppComponent,
+		children: [
+			{ path: '', component: MainContentComponent }
+		]
+	},
 	{ path: '**', redirectTo: '' }
 ];
 

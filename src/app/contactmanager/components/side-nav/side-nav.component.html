@@ -1,1 +1,21 @@
-<p>side-nav works!</p>
+<mat-drawer-container class="app-sidenav-container" autosize>
+	<mat-drawer #drawer class="app-sidenav-sidenav" mode="over">
+		<mat-toolbar color="primary">
+			Contacts
+		</mat-toolbar>
+		<mat-list role="list">
+			<mat-list-item role="listitem">Item 1</mat-list-item>
+			<mat-list-item role="listitem">Item 2</mat-list-item>
+			<mat-list-item role="listitem">Item 3</mat-list-item>
+		</mat-list>
+	</mat-drawer>
+
+	<div class="app-sidenav-sidenav-content">
+		<app-toolbar></app-toolbar>
+		<router-outlet></router-outlet>
+		<button type="button" mat-button (click)="drawer.toggle()">
+			Toggle sidenav
+		</button>
+	</div>
+
+</mat-drawer-container>
