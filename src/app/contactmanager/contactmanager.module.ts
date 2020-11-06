@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +8,7 @@ import { MainContentComponent } from './components/main-content/main-content.com
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ContactmanagerAppComponent } from './contactmanager-app.component';
+import { UserService } from './services/user.service';
 
 const routes: Routes = [
 	{
@@ -23,7 +25,8 @@ const routes: Routes = [
 		MaterialModule,
 		FlexLayoutModule,
 		FormsModule,
-		RouterModule.forChild(routes)
+		RouterModule.forChild(routes),
+		HttpClientModule
 	],
 	exports: [],
 	declarations: [
@@ -32,6 +35,8 @@ const routes: Routes = [
 		SideNavComponent,
 		MainContentComponent
 	],
-	providers: [],
+	providers: [
+		UserService
+	],
 })
 export class ContactManagerModule { }
