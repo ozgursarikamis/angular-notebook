@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IProduct } from './models/product';
 import { ProductService } from './product.service';
-import { State } from './state/product.reducer';
+import { getShowThumbnails, State } from './state/product.reducer';
 
 @Component({
 	selector: 'app-products',
@@ -22,11 +22,10 @@ export class ProductsComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.product$ = this.service.listAllProducts();
-		this.store.select('products').subscribe(products => {
-			console.log('products :>> ', products);
-			if (products) {
-				this.showThumbs = products.showThumbnail;
-			}
+
+		this.store.select(getShowThumbnails).subscribe(showThumbs => {
+			console.log('showThumbs :>> ', showThumbs);
+			this.showThumbs = showThumbs
 		});
 	}
 
