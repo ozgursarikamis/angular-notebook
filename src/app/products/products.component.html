@@ -1,14 +1,16 @@
 <br />
-<button (click)="toggleThumb()">Toggle</button>
 <div *ngIf="product$ | async as products">
-<ul style="list-style: none">
-	<li *ngFor="let product of products">
-		<h1>
-			<a [routerLink]="['details', product.id]">{{ product.name }}</a> 
-		</h1>
-		<img *ngIf="showThumbs" class="thumb" src="{{ product.thumb }}" /> <br>
-		<span>{{ product.desc }}</span>
-		<hr>
-	</li>
-</ul>
+
+	<button (click)="toggleThumb()">Toggle Thumb</button>
+
+	<ul style="list-style: none">
+		<li *ngFor="let product of products">
+			<h1>
+				<a [routerLink]="['details', product.id]">{{ product.name }}</a> 
+			</h1>
+			<img *ngIf="showThumbs" class="thumb" src="{{ product.thumb }}" /> <br>
+			<span>{{ product.desc }}</span>
+			<hr>
+		</li>
+	</ul>
 </div>

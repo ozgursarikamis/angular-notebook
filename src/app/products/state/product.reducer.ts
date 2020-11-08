@@ -1,7 +1,6 @@
-import { createAction, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
+import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as AppState from '../../state/app.state';
-import { IProduct } from '../models/product';
-
+import * as ProductActions from './product.actions';
 
 const initialState: IProductState = {
 	showThumbnails: false,
@@ -11,13 +10,23 @@ const initialState: IProductState = {
 
 export const productReducer = createReducer<IProductState>(
 	initialState as IProductState,
-	on(createAction('[Products] Toggle Product Code', (state: IProductState) => {
+	on(ProductActions.toggleThumbnails, (state: IProductState) => {
 			return {
 				...state,
-				showThumbnail: !state.showThumbnails
+				showThumbnails: !state.showThumbnails
 			}
-		})
-	)
+	}),
+	on(ProductActions.setCurrentProduct, (state, action): IProductState => {
+		return {
+			...state, currentProduct: +action.product.id
+		}
+	}),
+	on(ProductActions.initializeCurrentProduct, (state): IProductState => {
+		return {
+			...state,
+			currentProduct: 0
+		}
+	})
 );
 
 export interface State extends AppState.IState {
