@@ -1,0 +1,6 @@
+<br />
+<div *ngIf="product$ | async as products">
+	<div *ngFor="let product of products">
+		<a [routerLink]="['details', product.id]">{{ product.name }}</a>
+	</div>
+</div>
