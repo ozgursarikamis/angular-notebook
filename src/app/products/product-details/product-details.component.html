@@ -1,1 +1,9 @@
-<p>product-details works!: {{ id }} </p>
+
+<br><br>
+<a [routerLink]="['/products']"> <-- Go Back</a>
+<div *ngIf="productDetails$ | async as product">
+	<h1>{{ product.name }}</h1>
+	<img src="{{ product.thumb }}" alt="{{ product.name }}">
+	<p>{{ product.desc }}</p>
+	<b>{{ product.price | currency }}</b>
+</div>
