@@ -1,15 +1,10 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as AppState from '../../state/app.state';
+import { IProduct } from '../models/product';
 import * as ProductActions from './product.actions';
 
-const initialState: IProductState = {
-	showThumbnails: false,
-	products: [],
-	currentProduct: null,
-}
-
 export const productReducer = createReducer<IProductState>(
-	initialState as IProductState,
+	{ showThumbnails: true } as IProductState,
 	on(ProductActions.toggleThumbnails, (state: IProductState) => {
 			return {
 				...state,
@@ -26,6 +21,18 @@ export const productReducer = createReducer<IProductState>(
 			...state,
 			currentProduct: 0
 		}
+	}),
+	on(ProductActions.setProducts, (state, action): IProductState => {
+		return { 
+			...state,
+			products: action.products
+		};
+	}),
+	on(ProductActions.setProducts, (state, action): IProductState => {
+		return {
+			...state,
+			products: action.products
+		}
 	})
 );
 
@@ -35,7 +42,7 @@ export interface State extends AppState.IState {
 
 export interface IProductState {
 	showThumbnails: boolean;
-	products: [],
+	products: IProduct[],
 	currentProduct?: number
 }
 

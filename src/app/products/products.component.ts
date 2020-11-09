@@ -14,20 +14,24 @@ import * as ProductActions from "./state/product.actions";
 })
 export class ProductsComponent implements OnInit {
 	showThumbs: boolean;
+	private products: IProduct[];
 
 	constructor(
 		private service: ProductService,
 		private store: Store<State>
-	) { }
+	) { 
+		this.store.select(getShowThumbnails).subscribe(showThumbs => {
+			console.log('showThumbs from state :>> ', showThumbs);
+			this.showThumbs = showThumbs
+		});
+	}
 
 	product$: Observable<IProduct[]>;
 
 	ngOnInit(): void {
 		this.product$ = this.service.listAllProducts();
-
-		this.store.select(getShowThumbnails).subscribe(showThumbs => {
-			this.showThumbs = showThumbs
-		});
+		this.product$.subscribe(products => this.products = products);
+		this.store.dispatch(ProductActions.setProducts({products: this.products }));
 	}
 
 	toggleThumb() {
