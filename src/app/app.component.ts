@@ -6,7 +6,7 @@ import { Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/c
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-routing';
+  title = 'angular';
 }
 
 /*
