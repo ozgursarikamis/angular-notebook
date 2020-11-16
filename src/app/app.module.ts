@@ -8,10 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './store/custom-serializer';
+import { MoviesDetailComponent } from './movies-detail/movies-detail.component';
+import { MoviesComponent } from './movies/movies.component';
+import { SeriesComponent } from './series/series.component';
+import { SeriesDetailComponent } from './series-detail/series-detail.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MoviesDetailComponent,
+    MoviesComponent,
+    SeriesComponent,
+    SeriesDetailComponent
   ],
   imports: [
     BrowserModule,
