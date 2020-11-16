@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { SignalrServiceService } from './services/signalr-service.service';
+import { SignalRService } from './services/signalr-service.service';
 
 @Component({
 	selector: 'app-root',
@@ -32,27 +32,24 @@ export class AppComponent implements OnInit {
 		{ backgroundColor: '#E5E7E9' }
 	];
 	
-	constructor(
-		public signalRService: SignalrServiceService,
-		private httpClient: HttpClient
-	) {
-	}
+	constructor(public signalRService: SignalRService, private http: HttpClient) { }
 
-	ngOnInit(): void {
-		this.signalRService.startConnection();
-		this.signalRService.addTransferChartDataListener();
-		this.startHttpRequest();
+	ngOnInit() {
+	  this.signalRService.startConnection();
+	  this.signalRService.addTransferChartDataListener();
+	  this.signalRService.addBroadcastChartDataListener();
+	  this.startHttpRequest();
 	}
-
-	startHttpRequest() {
-		this.httpClient.get('http://localhost:5001/api/chart/')
-			.subscribe(response => {
-				console.log('response :>> ', response);
-			})
+  
+	private startHttpRequest = () => {
+	  this.http.get('http://localhost:5001/api/chart')
+		.subscribe(res => {
+		  console.log(res);
+		})
 	}
-
+  
 	public chartClicked = (event) => {
-		console.log(event);
-		this.signalRService.broadcastChartData();
-	  }
+	  console.log(event);
+	  this.signalRService.broadcastChartData();
+	}
 }
