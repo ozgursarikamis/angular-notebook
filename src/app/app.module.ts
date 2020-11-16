@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { CustomSerializer } from './store/custom-serializer';
+import { RouterStateCustomSerializer } from './store/route-state-custom-serializer';
 import { MoviesDetailComponent } from './movies-detail/movies-detail.component';
 import { MoviesComponent } from './movies/movies.component';
 import { SeriesComponent } from './series/series.component';
@@ -29,7 +29,7 @@ import { SeriesDetailComponent } from './series-detail/series-detail.component';
       maxAge: 25, // Retains last 25 states
       logOnly: true, // Restrict extension to log-only mode
     }),
-    StoreRouterConnectingModule.forRoot({ serializer: CustomSerializer })
+    StoreRouterConnectingModule.forRoot({ serializer: RouterStateCustomSerializer })
   ],
   providers: [],
   bootstrap: [AppComponent]
