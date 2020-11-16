@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { series } from '../app.constants';
 
 @Component({
   selector: 'app-series',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./series.component.scss']
 })
 export class SeriesComponent implements OnInit {
+  series: { id: string; name: string; release: number; link: string }[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+    this.series = series;
   }
-
 }

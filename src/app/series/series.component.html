@@ -1,1 +1,4 @@
-<p>series works!</p>
+<p>List of series</p>
+<div *ngFor="let series of series">
+  <a routerLink="/series/{{ series.id }}">{{ series.name }}</a>
+</div>
