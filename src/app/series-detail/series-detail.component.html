@@ -1,1 +1,12 @@
-<p>series-detail works!</p>
+<p>Details</p>
+
+<div *ngIf="series">
+  <div>
+    <a routerLink="/series">see list</a>
+  </div>
+  <div>Name: {{ series.name }}</div>
+  <div>Release: {{ series.release }}</div>
+  <div>
+    <img width="400" src="{{ series.link }}" />
+  </div>
+</div>
