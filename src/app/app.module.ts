@@ -6,10 +6,9 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 
 // import ngx-translate and the http loader
-import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MissingTransportations } from './missing.transportations';
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient) {
@@ -26,7 +25,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		// ngx-translate and the loader module
 		HttpClientModule,
 		TranslateModule.forRoot({
-			missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTransportations},
+			// missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTransportations},
 			loader: {
 				provide: TranslateLoader,
 				useFactory: HttpLoaderFactory,
