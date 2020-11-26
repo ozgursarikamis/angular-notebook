@@ -1,0 +1,47 @@
+{
+    "version": "1.0.0",
+    "portalUrl": "http://portal-dev.smoothwall.com",
+    "baseUrl": "https://apis-dev.smoothwall.cloud",
+    "splitIo": {
+        "frontEndSafeApiKey": "kpikoimcckqkg0srvkh9jb63iqu0ssnripjt"
+    },
+    "apim": {
+        "subKey": "66824fd4e16f4f0fab4d9144d5104fcc",
+        "subscriptionKeyName": "Ocp-Apim-Subscription-Key"
+    },
+    "googleAuthConfig": {
+        "clientId": "715123050537-ke27ks6adgaar4h49can9n4gqhh7dfvl.apps.googleusercontent.com",
+        "redirectUri": "http://portal-dev.smoothwall.com/classroom/add-google-users"
+    },
+    "portal": {
+        "loginAPI": "https://apis-dev.smoothwall.cloud/global/portal/login",
+        "logoutAPI": "https://apis-dev.smoothwall.cloud/global/portal/logout",
+        "productsAPI": "https://apis-dev.smoothwall.cloud/global/portal/products",
+        "getLicencedProductsAPI": "https://apis-dev.smoothwall.cloud/shared/licensing/Licence/products"
+    },
+    "reports": {
+        "reportingAPI": "https://apis-dev.smoothwall.cloud/cldrpt/reporting",
+        "reportingUsersAPI": "https://apis-dev.smoothwall.cloud/cldrpt/reporting/users",
+        "downloadReportAPI": "https://apis-dev.smoothwall.cloud/cldrpt/reporting/reports/download-report/",
+		"ModeAnalyticsToken": "07f09fa3-3d4f-4ea4-9580-3a47707a5a3f",
+        "getAnalyticsReportAPI": "https://apis-dev.smoothwall.cloud/cldrpt/analytics-url?",
+        "getAvailableReportsListAPI": "https://apis-dev.smoothwall.cloud/cldrpt/available-reports-list",
+        "exportAnalyticsPdfAPI": "https://sw-shared-dev-ukw-1-apim.azure-api.net/shared/smoothwallportal/download-analytics-pdf?",
+        "emailAnalyticsPdfAPI": "https://apis-dev.smoothwall.cloud/tbc",
+        "tenantsAPI": "https://apis-dev.smoothwall.cloud/cldrpt/api/tenants",
+        "reportsAPI": "https://apis-dev.smoothwall.cloud/cldrpt/api/reports",
+        "comingSoonUrl": "https://youtu.be/l_prrlEOU1I?t=202",
+        "cache": "https://apis-dev.smoothwall.cloud/cldrpt/api/cache"
+    },
+    "classroom": {
+        "getUsersAPI": "https://apis-dev.smoothwall.cloud/crmgt/admin/users/teachers",
+        "getOrganisationsAPI": "https://apis-dev.smoothwall.cloud/crmgt/admin/users/organisations",
+        "getOUnitsAPI": "https://apis-dev.smoothwall.cloud/crmgt/googlewrapper/api/ounits",
+        "getOunitUsersAPI": "https://apis-dev.smoothwall.cloud/crmgt/googlewrapper/api/ounits/users",
+        "addUsersAPI": "https://apis-dev.smoothwall.cloud/crmgt/admin/users",
+        "removeUsersAPI": "https://apis-dev.smoothwall.cloud/crmgt/admin/users/delete",
+        "settingsAPI": "https://apis-dev.smoothwall.cloud/crmgt/admin/settings",
+        "releaseNoteAPI": "https://apis-dev.smoothwall.cloud/releasenotesapi/crmgt-admin-release-notes/",
+        "assignedTeachersAPI": "https://apis-dev.smoothwall.cloud/crmgt/admin/users/teachers/assigned"
+    }
+}

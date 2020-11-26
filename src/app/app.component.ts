@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as test from "../assets/data/test.json";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular';
+  constructor() {
+	  console.log('test :>> ', (test as any).default);
+  }
 }
