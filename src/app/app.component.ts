@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular';
+  private json = 'assets/data/test.json';
+
+  constructor(private http: HttpClient) {
+	  this.getJson().subscribe(console.log);
+  }
+
+  getJson() {
+	  return this.http.get(this.json);
+  }
 }
