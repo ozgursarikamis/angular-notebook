@@ -21,7 +21,7 @@ import { productReducer } from './products/state/product.reducer';
 		AppRoutingModule,
 		SharedModule,
 		StoreModule.forRoot({}, {}),
-		StoreModule.forFeature('products', productReducer),
+		StoreModule.forFeature('AppStore', productReducer),
 		StoreDevtoolsModule.instrument({
 			name: 'APM Demo App Dev Tools',
 			maxAge: 25,

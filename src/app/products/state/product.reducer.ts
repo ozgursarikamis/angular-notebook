@@ -23,16 +23,10 @@ export const productReducer = createReducer<IProductState>(
 		}
 	}),
 	on(ProductActions.setProducts, (state, action): IProductState => {
-		return { 
-			...state,
-			products: action.products
-		};
-	}),
-	on(ProductActions.setProducts, (state, action): IProductState => {
 		return {
 			...state,
 			products: action.products
-		}
+		};
 	})
 );
 
@@ -46,7 +40,7 @@ export interface IProductState {
 	currentProduct?: number
 }
 
-const getProductFeatureState = createFeatureSelector<IProductState>('products');
+const getProductFeatureState = createFeatureSelector<IProductState>('AppStore');
 
 export const getShowThumbnails = createSelector(
 	getProductFeatureState, state => {
