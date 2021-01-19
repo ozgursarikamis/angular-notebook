@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { DxButtonModule } from 'devextreme-angular';
+import { DxButtonModule, DxDataGridModule } from 'devextreme-angular';
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +12,8 @@ import { DxButtonModule } from 'devextreme-angular';
   imports: [
     BrowserModule,
 	AppRoutingModule,
-	DxButtonModule
+	DxButtonModule,
+	DxDataGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]
