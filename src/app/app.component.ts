@@ -1,6 +1,9 @@
+import { Observable } from 'rxjs';
+import { DepartmentService } from './services/department.service';
 import { Component, OnInit } from '@angular/core';
 import { SignalRService } from './services/signal-r.service';
 import { HttpClient } from '@angular/common/http';
+import { Department } from './interfaces/department';
 
 @Component({
   selector: 'app-root',
@@ -24,13 +27,24 @@ export class AppComponent implements OnInit {
   public chartLegend: boolean = true;
   public colors: any[] = [{ backgroundColor: '#5491DA' }, { backgroundColor: '#E74C3C' }, { backgroundColor: '#82E0AA' }, { backgroundColor: '#E5E7E9' }]
 
-  constructor(public signalRService: SignalRService, private http: HttpClient) { }
+  public departments$: Observable<Department[]>;
+
+  constructor(
+    public signalRService: SignalRService,
+    private http: HttpClient,
+    private departmentService: DepartmentService
+    ) { }
 
   ngOnInit() {
-    this.signalRService.startConnection();
-    this.signalRService.addTransferChartDataListener();
-    this.signalRService.addBroadcastChartDataListener();
-    this.startHttpRequest();
+    // this.signalRService.startConnection();
+    // this.signalRService.addTransferChartDataListener();
+    // this.signalRService.addBroadcastChartDataListener();
+    // this.startHttpRequest();
+
+    this.departmentService.startConnection();
+    this.departmentService.addDepartmentsListener();
+    this.departmentService.broadcastDepartments();
+    this.departments$ = this.departmentService.listDepartments();
   }
 
   private startHttpRequest = () => {
@@ -40,7 +54,7 @@ export class AppComponent implements OnInit {
       })
   }
 
-  public chartClicked = (event) => {
+  public chartClicked = (event: any) => {
     console.log(event);
     this.signalRService.broadcastChartData();
   }
